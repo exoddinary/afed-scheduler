@@ -140,7 +140,7 @@ export default function BookingModal({
 
     return (
         <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-content booking-modal" onClick={e => e.stopPropagation()}>
                 <div className="modal-header">
                     <h2 className="modal-title">Book Meeting</h2>
                     <button className="modal-close" onClick={onClose} aria-label="Close">

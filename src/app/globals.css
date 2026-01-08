@@ -679,6 +679,11 @@ body {
   background-color: rgba(37, 99, 235, 0.05);
 }
 
+.rbc-day-slot .rbc-time-slot:active {
+  background-color: rgba(37, 99, 235, 0.2) !important;
+  transition: background-color 0.05s;
+}
+
 /* Meeting Detail Modal */
 .detail-modal {
   max-height: 85vh;
@@ -857,13 +862,20 @@ body {
 }
 
 /* Registration Modal Styles */
-.registration-modal {
-  max-width: 400px !important;
+.registration-modal,
+.booking-modal {
+  max-width: 440px !important;
   border-radius: 28px !important;
   padding: 32px 24px !important;
   align-self: center !important;
   margin-bottom: auto !important;
   margin-top: auto !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.booking-modal {
+  max-width: 480px !important;
+  /* Slightly wider for form */
 }
 
 .registration-remark {
