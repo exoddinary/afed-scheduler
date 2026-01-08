@@ -801,18 +801,20 @@ body {
 .detail-actions {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 32px;
+  flex-wrap: wrap;
 }
 
 .detail-btn {
   flex: 1;
+  min-width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 20px;
+  padding: 14px;
   border-radius: 12px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
@@ -840,6 +842,16 @@ body {
   color: var(--white);
 }
 
+.detail-btn-danger {
+  background-color: #fee2e2;
+  border: none;
+  color: #ef4444;
+}
+
+.detail-btn-danger:hover {
+  background-color: #fecaca;
+}
+
 .detail-btn-primary:hover {
   background-color: var(--primary-blue-dark);
 }
@@ -852,6 +864,14 @@ body {
   align-self: center !important;
   margin-bottom: auto !important;
   margin-top: auto !important;
+}
+
+.registration-remark {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-top: 4px;
+  line-height: 1.4;
+  font-weight: 400;
 }
 
 .registration-preview {

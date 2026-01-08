@@ -13,6 +13,7 @@ import { Meeting, Attendee } from '@/components/EventCard';
 import { AvatarFullConfig } from 'react-nice-avatar';
 
 interface CurrentUser {
+    id: string;
     name: string;
     department: string;
     avatarConfig: AvatarFullConfig;
@@ -137,12 +138,13 @@ export default function Home() {
     const finalizeBooking = (newMeeting: { title: string; start: Date; end: Date }, user: CurrentUser) => {
         const meeting: Meeting = {
             id: `meeting-${Date.now()}`,
+            ownerId: user.id,
             title: newMeeting.title,
             start: newMeeting.start,
             end: newMeeting.end,
             attendees: [
                 {
-                    id: 'current-user',
+                    id: user.id,
                     name: user.name,
                     avatarConfig: user.avatarConfig
                 }
@@ -152,7 +154,19 @@ export default function Home() {
         setMeetings(prev => [...prev, meeting]);
     };
 
-    const handleRegister = (user: { name: string; department: string; avatarConfig: AvatarFullConfig }) => {
+    const handleUpdateMeeting = (updatedMeeting: Meeting) => {
+        setMeetings(prev => prev.map(m => m.id === updatedMeeting.id ? updatedMeeting : m));
+        setIsDetailModalOpen(false);
+        setSelectedMeeting(null);
+    };
+
+    const handleDeleteMeeting = (meetingId: string) => {
+        setMeetings(prev => prev.filter(m => m.id !== meetingId));
+        setIsDetailModalOpen(false);
+        setSelectedMeeting(null);
+    };
+
+    const handleRegister = (user: CurrentUser) => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         setCurrentUser(user);
         setIsRegistrationModalOpen(false);
@@ -213,6 +227,8 @@ export default function Home() {
                 isOpen={isDetailModalOpen}
                 onClose={handleCloseDetailModal}
                 meeting={selectedMeeting}
+                currentUser={currentUser}
+                onDelete={handleDeleteMeeting}
             />
         </main>
     );

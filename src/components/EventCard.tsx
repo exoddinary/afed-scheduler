@@ -9,6 +9,7 @@ export interface Attendee {
 
 export interface Meeting {
     id: string;
+    ownerId?: string; // ID of the user who created it
     title: string;
     start: Date;
     end: Date;

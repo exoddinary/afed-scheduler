@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Avatar, { genConfig, AvatarConfig, AvatarFullConfig } from 'react-nice-avatar';
 
 interface User {
+    id: string;
     name: string;
     department: string;
     gender: 'male' | 'female';
@@ -17,14 +18,10 @@ interface RegistrationModalProps {
 }
 
 const DEPARTMENTS = [
-    'Engineering',
-    'Marketing',
-    'Design',
-    'Operations',
-    'Human Resources',
-    'Finance',
-    'Product',
-    'Sales'
+    'Consumer',
+    'Energy',
+    'Tricipta',
+    'Others'
 ];
 
 export default function RegistrationModal({ isOpen, onClose, onRegister }: RegistrationModalProps) {
@@ -47,6 +44,7 @@ export default function RegistrationModal({ isOpen, onClose, onRegister }: Regis
         if (!name.trim()) return;
 
         onRegister({
+            id: `user-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             name: name.trim(),
             department,
             gender,
@@ -60,7 +58,12 @@ export default function RegistrationModal({ isOpen, onClose, onRegister }: Regis
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content registration-modal" onClick={e => e.stopPropagation()}>
                 <div className="modal-header">
-                    <h2 className="modal-title">Welcome! Let's get you set up</h2>
+                    <div>
+                        <h2 className="modal-title">Welcome! Let's get you set up</h2>
+                        <p className="registration-remark">
+                            You only need to register this once for your device. This is to enable you to edit or delete your meeting plans.
+                        </p>
+                    </div>
                     <button className="modal-close" onClick={onClose} aria-label="Close">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
